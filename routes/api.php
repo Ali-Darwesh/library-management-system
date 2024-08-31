@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BorrowRecordController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserController;
 
@@ -20,3 +21,4 @@ Route::group([
 Route::apiResource('users', UserController::class);
 Route::apiResource('books', BookController::class);
 Route::apiResource('ratings', RatingController::class);
+Route::apiResource('borrow-record', BorrowRecordController::class);

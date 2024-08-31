@@ -29,6 +29,7 @@ class BookRequest extends FormRequest
             'description' => 'required|string|max:255',
             'published_at' => 'required|date|before_or_equal:today',
             'category' => 'required|string|max:255',
+            'is_available' => 'nullable|boolean'
         ];
     }
     protected function failedValidation(Validator $validator)

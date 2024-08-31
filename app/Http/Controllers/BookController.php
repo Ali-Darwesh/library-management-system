@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use App\Services\BookService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -20,8 +22,12 @@ class BookController extends Controller
     public function index(Request $request)
     {
         // $books = Book::all();
-        $author = $request->query('author');
-        $books = Book::byAuthor($author)->get();
+        $books = Book::withAvg('ratings', 'rating')
+            ->get();
+        // ->makeHidden('ratings_avg_rating')
+        // ->each(function ($book) {
+        //     $book->ratings_avg = (int) round($book->ratings_avg_rating);
+        // });
         return response()->json($books, 200);
     }
 
@@ -56,9 +62,11 @@ class BookController extends Controller
      * @return \Illuminate\HTTP\JsonResponse
 
      */
-    public function update(Request $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book)
     {
-        //
+        $validatedData = $request->all();
+        $book = $this->bookService->updateBook($book, $validatedData);
+        return response()->json($book, 201);
     }
 
     /**
@@ -67,6 +75,7 @@ class BookController extends Controller
     public function destroy(Book $book)
     {  //dependencies injection
         $book->delete();
-        return response()->json(null, 204);
+        $book = $this->bookService->deleteBook($book);
+        return response()->json(['message' => 'deleting book success'], 204);
     }
 }

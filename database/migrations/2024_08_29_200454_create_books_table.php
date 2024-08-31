@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("description");
             $table->date('published_at');
             $table->string("category");
-            $table->boolean('isBorrowed')->default(false);
+            $table->boolean('is_available')->default(true);
             $table->timestamps();
         });
     }

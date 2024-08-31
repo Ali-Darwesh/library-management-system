@@ -3,29 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-    public function register()
+    public function register(StoreUserRequest $request)
     {
-        $validator = Validator::make(request()->all(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:8',
-        ]);
+        $validatedData = request()->all();
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors()->toJson(), 400);
-        }
-
-        $user = new User;
-        $user->name = request()->name;
-        $user->email = request()->email;
-        $user->password = bcrypt(request()->password);
-        $user->save();
+        $user =  User::create($validatedData);
 
         return response()->json($user, 201);
     }
