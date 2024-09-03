@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -13,7 +14,15 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $user = Auth::user();
+        // Ensure that there is an authenticated user
+        if (!$user || (!$user->is_admin && $this->user()->id !== $user->id)) {
+            abort(response()->json([
+                'error' => 'You are not authorized to perform this action.',
+            ], 403));
+        }
+
+        return true;
     }
 
     /**

@@ -6,6 +6,8 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -15,11 +17,22 @@ class UserController extends Controller
         $users = User::all();
         return response()->json($users);
     }
+    /**
+     * display a specified data.
+     * @param $id
+     * @return \Illuminate\HTTP\JsonResponse
 
+     */
     public function show($id)
     {
+        $user = Auth::user();
+        // Ensure that there is an authenticated user
+        if (!$user || (!$user->is_admin && $id !== $user->id)) {
+            abort(response()->json([
+                'error' => 'You are not authorized to perform this action.',
+            ], 403));
+        }
         $user = User::find($id);
-
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
@@ -42,30 +55,28 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        try {
-            // return response()->json($request->all(), 200);
-            $validatedData = $request->all();
 
+        $validatedData = $request->all();
+        $user->update($validatedData);
 
-            $user = $user->update($validatedData);
-
-            return response()->json($user, 201);
-        } catch (Exception $e) {
-            return response()->json(['error' => 'Failed to update rating', 'message' => $e->getMessage()], 500);
-        }
+        return response()->json($user, 201);
     }
     /**
      * delete user data in database
-     * @param Movie $movie
+     * @param User $user
      * @return \Illuminate\HTTP\JsonResponse
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        try {
-            $user->delete();
-            return response()->json(null, 204);
-        } catch (Exception $e) {
-            return response()->json(['error' => 'Failed to delete user', 'message' => $e->getMessage()], 500);
+        $user = User::find($id);
+        $authenticatedUser  = Auth::user();
+        // Ensure that there is an authenticated user
+        if (!$authenticatedUser  || (!$authenticatedUser->is_admin && $user->id !== $authenticatedUser->id)) {
+            abort(response()->json([
+                'error' => 'You are not authorized to perform this action.',
+            ], 403));
         }
+        $user->delete();
+        return response()->json($user, 200);
     }
 }

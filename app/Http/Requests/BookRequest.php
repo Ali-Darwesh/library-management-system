@@ -5,15 +5,24 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
 class BookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     * just the admin can add books
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::user()->is_admin;
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'author' => ucwords(strtolower($this->author)),
+
+        ]);
     }
 
     /**
@@ -25,8 +34,8 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255|unique:books,title',
-            'author' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'author' => 'required|string|max:255|min:3',
+            'description' => 'required|string|max:255|min:10',
             'published_at' => 'required|date|before_or_equal:today',
             'category' => 'required|string|max:255',
             'is_available' => 'nullable|boolean'
@@ -36,31 +45,30 @@ class BookRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'status' => 'error',
-            'message' => 'please input data with correct form',
+            'message' => 'please input book data with correct form',
             'errors' => $validator->errors(),
         ]));
     }
     /**
-     * first name
-     * last name
-     * =>user name
+     * change the way of displaying the attributes to be easy for user to understand
      */
-    // protected function passedValidation()
-    // {
-    //     $this->merge([
-    //         'user_name' => $this->input('first_name') . '_' . $this->input('last_name')
-    //     ]);
-    // }
     public function attributes()
     {
         return [
             'title' => 'book title',
+            'author' => 'author name',
+            'description' => ' book description',
+            "published_at" => 'book publication date'
         ];
     }
+    /**
+     * specific the messages of each validate error
+     */
     public function messages()
     {
         return [
-            'required' => 'the :attribute field must br writen',
+            'required' => 'the :attribute field must be writen',
+            'date' => 'the :attribute filed must writen in(( Year-Month-Day )) form'
         ];
     }
 }

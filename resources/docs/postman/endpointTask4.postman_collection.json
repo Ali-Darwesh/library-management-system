@@ -1,0 +1,1536 @@
+{
+	"info": {
+		"_postman_id": "72886e73-7daf-4202-bafc-4409a3ec8376",
+		"name": "endpointTask4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26325739"
+	},
+	"item": [
+		{
+			"name": "admin Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/auth/login",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "admin Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/auth/login",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 15:21:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Admin\",\n        \"email\": \"admin@example.com\",\n        \"email_verified_at\": null,\n        \"is_admin\": 1,\n        \"created_at\": \"2024-09-02T10:13:16.000000Z\",\n        \"updated_at\": \"2024-09-02T10:13:16.000000Z\"\n    },\n    \"authorisation\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzNzY5MTEsImV4cCI6MTcyNTM4MDUxMSwibmJmIjoxNzI1Mzc2OTExLCJqdGkiOiJyUmlPZUJueWRQRHBneFY0Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.fWTvaEfcVT6gp4ns9DufeQLYN7B83coQh5pq0DQEjwo\",\n        \"type\": \"bearer\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "ali",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ali@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/auth/register",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ali",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ali3@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/auth/register",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 15:35:35 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"name\": \"ali\",\n        \"email\": \"ali3@gmail.com\",\n        \"updated_at\": \"2024-09-03T15:35:35.000000Z\",\n        \"created_at\": \"2024-09-03T15:35:35.000000Z\",\n        \"id\": 3\n    },\n    \"authorisation\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvcmVnaXN0ZXIiLCJpYXQiOjE3MjUzNzc3MzUsImV4cCI6MTcyNTM4MTMzNSwibmJmIjoxNzI1Mzc3NzM1LCJqdGkiOiJqUU8ya284YWFHcFYwaHNGIiwic3ViIjoiMyIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.mIHnXzKYxoU7y_GicJhS9p4YVlAmRAyX1ZS1iIrO85M\",\n        \"type\": \"bearer\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}api/auth/login?email=ali@gmail.com&password=12345678",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "ali@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "12345678"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzMTQ5NDMsImV4cCI6MTcyNTMxODU0MywibmJmIjoxNzI1MzE0OTQzLCJqdGkiOiJJcjNsb2dtajIxYnJXeWUwIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.2uc1eosTcV0Xmpw2dsMWBdm5qEIjPNZHHs9wYZZL6rM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "ali1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/auth/login",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 15:23:09 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"user\": {\n        \"id\": 2,\n        \"name\": \"ali\",\n        \"email\": \"ali1@gmail.com\",\n        \"email_verified_at\": null,\n        \"is_admin\": 0,\n        \"created_at\": \"2024-09-02T10:32:08.000000Z\",\n        \"updated_at\": \"2024-09-02T13:33:06.000000Z\"\n    },\n    \"authorisation\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzNzY5ODksImV4cCI6MTcyNTM4MDU4OSwibmJmIjoxNzI1Mzc2OTg5LCJqdGkiOiJVT1IwOUh4QXpxbERMbHRYIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.GK18zI1Zf1ZvU4qshGw63Xwj3lDkJnDVeSvStmdWiuM\",\n        \"type\": \"bearer\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}api/users?name=ali&email=ali3@gmail.com&password=12345678&password_confirmation=12345678",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "ali"
+						},
+						{
+							"key": "email",
+							"value": "ali3@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "12345678"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzODMyNzEsImV4cCI6MTcyNTM4Njg3MSwibmJmIjoxNzI1MzgzMjcxLCJqdGkiOiJ4b2pGVktXU0VIdE1scVdCIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.mAtT0MqH9tXU3wCpA_43o7ubOxkBefrvAWoQQ0gGip8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "ali",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/users/2",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 17:08:16 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"name\": \"zain1\",\n    \"email\": \"ali1@gmail.com\",\n    \"email_verified_at\": null,\n    \"is_admin\": 0,\n    \"created_at\": \"2024-09-02T10:32:08.000000Z\",\n    \"updated_at\": \"2024-09-03T17:07:21.000000Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "addbook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "story",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "mohammed",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "djafkfa",
+							"type": "text"
+						},
+						{
+							"key": "published_at",
+							"value": "2024-3-3",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "story",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/books",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "addbook",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "novel3",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "mohammed",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "djafkfajjjjj",
+									"type": "text"
+								},
+								{
+									"key": "published_at",
+									"value": "2022-3-3",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "novel",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/books",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 15:24:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"novel3\",\n    \"author\": \"Mohammed\",\n    \"description\": \"djafkfajjjjj\",\n    \"published_at\": \"2022-3-3\",\n    \"category\": \"novel\",\n    \"updated_at\": \"2024-09-03T15:24:31.000000Z\",\n    \"created_at\": \"2024-09-03T15:24:31.000000Z\",\n    \"id\": 8\n}"
+				}
+			]
+		},
+		{
+			"name": "get books with filtering on author|available|groupby category",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "author",
+							"value": "ali",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "sort_by",
+							"value": "category",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/books?author=ali&sort_by=category&category=novel&is_available=true",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": "ali"
+						},
+						{
+							"key": "sort_by",
+							"value": "category"
+						},
+						{
+							"key": "category",
+							"value": "novel"
+						},
+						{
+							"key": "is_available",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get books with filtering on author|available|groupby category",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "author",
+									"value": "ali",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "sort_by",
+									"value": "category",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/books?author=ali&sort_by=category&category=novel&is_available=true",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "author",
+									"value": "ali"
+								},
+								{
+									"key": "sort_by",
+									"value": "category"
+								},
+								{
+									"key": "category",
+									"value": "novel"
+								},
+								{
+									"key": "is_available",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 15:14:49 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"novel\": [\n        {\n            \"id\": 5,\n            \"title\": \"novel\",\n            \"author\": \"ali\",\n            \"description\": \"djafkfa\",\n            \"published_at\": \"2022-03-03\",\n            \"category\": \"novel\",\n            \"is_available\": 1,\n            \"created_at\": \"2024-09-03T11:40:59.000000Z\",\n            \"updated_at\": \"2024-09-03T11:40:59.000000Z\",\n            \"ratings_avg_rating\": null\n        },\n        {\n            \"id\": 6,\n            \"title\": \"novel1\",\n            \"author\": \"Ali Darwesh\",\n            \"description\": \"djafkfa\",\n            \"published_at\": \"2022-03-03\",\n            \"category\": \"novel\",\n            \"is_available\": 1,\n            \"created_at\": \"2024-09-03T12:38:18.000000Z\",\n            \"updated_at\": \"2024-09-03T12:38:18.000000Z\",\n            \"ratings_avg_rating\": null\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "addRating",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzNzY5ODksImV4cCI6MTcyNTM4MDU4OSwibmJmIjoxNzI1Mzc2OTg5LCJqdGkiOiJVT1IwOUh4QXpxbERMbHRYIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.GK18zI1Zf1ZvU4qshGw63Xwj3lDkJnDVeSvStmdWiuM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "book_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "review",
+									"value": "fffff",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/ratings",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"ratings"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 15:23:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"book_id\": \"1\",\n    \"rating\": \"4\",\n    \"review\": \"fffff\",\n    \"user_id\": 2,\n    \"updated_at\": \"2024-09-03T15:23:32.000000Z\",\n    \"created_at\": \"2024-09-03T15:23:32.000000Z\",\n    \"id\": 6\n}"
+				}
+			]
+		},
+		{
+			"name": "create-borrow-record",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzNTkzNzcsImV4cCI6MTcyNTM2Mjk3NywibmJmIjoxNzI1MzU5Mzc3LCJqdGkiOiJIU0hkaXE2NjVqdWpqSm80Iiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.asnOj8gtad1GlqEJOM-wMTPm3kkF041eegOnWa-K3AM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "book_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/borrow-record",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"borrow-record"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "book_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/borrow-record",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"borrow-record"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 10:35:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Borrow record created successfully!\",\n    \"borrowRecord\": {\n        \"book_id\": \"2\",\n        \"user_id\": 2,\n        \"borrowed_at\": \"2024-09-03\",\n        \"due_date\": \"2024-09-17\",\n        \"returned_at\": null,\n        \"updated_at\": \"2024-09-03T10:35:31.000000Z\",\n        \"created_at\": \"2024-09-03T10:35:31.000000Z\",\n        \"id\": 7\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "updateBorrowRecord",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzNTU2NTcsImV4cCI6MTcyNTM1OTI1NywibmJmIjoxNzI1MzU1NjU3LCJqdGkiOiJlWDQ5cmhydWtTanF2QjdvIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.nzeSDXONJwOlq_AC9OO0yMlTbFg-GLDmUVApLq3pH4I",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_method",
+							"value": "PUT",
+							"type": "text"
+						},
+						{
+							"key": "returned_at",
+							"value": "2024-9-3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/borrow-record/7",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"borrow-record",
+						"7"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "returned_at",
+									"value": "2024-9-3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/borrow-record/7",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"borrow-record",
+								"7"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 15:22:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The book was returned.\",\n    \"borrow_record\": {\n        \"id\": 7,\n        \"book_id\": 2,\n        \"user_id\": 2,\n        \"borrowed_at\": \"2024-09-03 00:00:00\",\n        \"due_date\": \"2024-09-17 00:00:00\",\n        \"returned_at\": \"2024-09-03T00:00:00.000000Z\",\n        \"created_at\": \"2024-09-03T10:35:31.000000Z\",\n        \"updated_at\": \"2024-09-03T15:22:06.000000Z\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "update book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_method",
+							"value": "PUT",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "ali",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "ali",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/books/1",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "ali",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "ali",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/books/1",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 11:49:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"title\": \"story\",\n    \"author\": \"ali\",\n    \"description\": \"djafkfa\",\n    \"published_at\": \"2024-03-03\",\n    \"category\": \"story\",\n    \"is_available\": 1,\n    \"created_at\": \"2024-09-02T10:31:21.000000Z\",\n    \"updated_at\": \"2024-09-03T11:49:31.000000Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "update user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzODI5MTAsImV4cCI6MTcyNTM4NjUxMCwibmJmIjoxNzI1MzgyOTEwLCJqdGkiOiJmdHNoZTdEVkpUdE9rUkJPIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.y7-zYcfL1smae3M9nWvhkjRQ6MRsm9A3TFM5ZIxWJdc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "zain1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/update-user/2",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"update-user",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "zain1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}api/update-user/2",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"update-user",
+								"2"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 17:07:21 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"name\": \"zain1\",\n    \"email\": \"ali1@gmail.com\",\n    \"email_verified_at\": null,\n    \"is_admin\": 0,\n    \"created_at\": \"2024-09-02T10:32:08.000000Z\",\n    \"updated_at\": \"2024-09-03T17:07:21.000000Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delet book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzODMyNzEsImV4cCI6MTcyNTM4Njg3MSwibmJmIjoxNzI1MzgzMjcxLCJqdGkiOiJ4b2pGVktXU0VIdE1scVdCIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.mAtT0MqH9tXU3wCpA_43o7ubOxkBefrvAWoQQ0gGip8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}api/books/2",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"books",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete rating",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjUzODMyNzEsImV4cCI6MTcyNTM4Njg3MSwibmJmIjoxNzI1MzgzMjcxLCJqdGkiOiJ4b2pGVktXU0VIdE1scVdCIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.mAtT0MqH9tXU3wCpA_43o7ubOxkBefrvAWoQQ0gGip8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}api/ratings/2",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"ratings",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete rating",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}api/ratings/2",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"ratings",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 17:25:07 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Rating deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get ratings",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}api/ratings",
+							"host": [
+								"{{baseUrl}}api"
+							],
+							"path": [
+								"ratings"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.3.10"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 03 Sep 2024 17:23:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 2,\n        \"user_id\": 2,\n        \"book_id\": 1,\n        \"rating\": 4,\n        \"review\": \"fffff\",\n        \"created_at\": \"2024-09-02T21:54:18.000000Z\",\n        \"updated_at\": \"2024-09-02T21:54:18.000000Z\"\n    },\n    {\n        \"id\": 3,\n        \"user_id\": 2,\n        \"book_id\": 1,\n        \"rating\": 4,\n        \"review\": \"fffff\",\n        \"created_at\": \"2024-09-02T21:55:32.000000Z\",\n        \"updated_at\": \"2024-09-02T21:55:32.000000Z\"\n    },\n    {\n        \"id\": 4,\n        \"user_id\": 2,\n        \"book_id\": 1,\n        \"rating\": 4,\n        \"review\": \"fffff\",\n        \"created_at\": \"2024-09-02T21:58:55.000000Z\",\n        \"updated_at\": \"2024-09-02T21:58:55.000000Z\"\n    },\n    {\n        \"id\": 5,\n        \"user_id\": 2,\n        \"book_id\": 2,\n        \"rating\": 4,\n        \"review\": \"fffff\",\n        \"created_at\": \"2024-09-02T21:59:13.000000Z\",\n        \"updated_at\": \"2024-09-02T21:59:13.000000Z\"\n    },\n    {\n        \"id\": 6,\n        \"user_id\": 2,\n        \"book_id\": 1,\n        \"rating\": 4,\n        \"review\": \"fffff\",\n        \"created_at\": \"2024-09-03T15:23:32.000000Z\",\n        \"updated_at\": \"2024-09-03T15:23:32.000000Z\"\n    }\n]"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/",
+			"type": "string"
+		}
+	]
+}

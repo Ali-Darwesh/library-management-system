@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Book;
 use APP\Repositories\BookRepositories as RepositoriesBookRepositories;
-
+use Illuminate\Database\Eloquent\Builder;
 
 class BookService
 {
@@ -22,4 +22,6 @@ class BookService
     {
         return $book->delete();
     }
+    //Scope to filter data on director or genre
+
 }

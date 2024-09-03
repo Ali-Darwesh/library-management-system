@@ -28,8 +28,10 @@ class Borrow_record extends Model
         return $this->belongsTo(Book::class);
     }
 
-    public function scopeCheckIfReturned(Builder $query, $validatedData, Borrow_record $borrow_record)
-    {
+    public static function checkIfReturned(
+        $validatedData,
+        Borrow_record $borrow_record
+    ) {
         $borrowedAt = Carbon::parse($borrow_record->borrowed_at);
         $dueDate = Carbon::parse($borrow_record->due_date);
 
@@ -42,18 +44,17 @@ class Borrow_record extends Model
 
             // Check if the book was returned late
             // Check if the returned date is on or before the due date
-            if ($daysDifference > -1) {
+            if ($daysDifference > 14) {
                 $message = 'The book was returned late.';
+            } else {
+                $message = 'The book was returned.';
             }
             return ['due_date' => null, 'returned_at' => $returnedAt, 'message' => $message];
-        } else {
-            $today = Carbon::now();
+        } elseif ($daysDifference > 14) {
 
-            // Check if the current date is past the due date
-            if ($daysDifference > -1) {
-                $due_date = $dueDate->copy()->addDays(3);
-                $message = 'The book was not returned in the specified period. Please return it within three days.';
-            }
+            $due_date = $dueDate->copy()->addDays(3);
+            $message = 'The book was not returned in the specified period. Please return it within three days.';
+
 
             return [
                 'due_date' => $due_date,

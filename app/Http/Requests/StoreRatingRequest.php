@@ -2,29 +2,37 @@
 
 namespace App\Http\Requests;
 
-use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 
-class StoreBorrowRecordRequest extends FormRequest
+class StoreRatingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     * the admin and the user are authorized to make the borrow operation
      */
     public function authorize(): bool
     {
         $user = Auth::user();
         // Ensure that there is an authenticated user
-        if (!$user || (!$user->is_admin && $this->user()->id !== $user->id)) {
+        if (!$user || ($this->user()->id !== $user->id)) {
             abort(response()->json([
                 'error' => 'You are not authorized to perform this action.',
             ], 403));
         }
 
         return true;
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'user_id' => Auth::id(),
+            'book_id' => $this->book_id,
+            'rating' => $this->rating,
+            'review' => $this->review,
+        ]);
     }
 
     /**
@@ -35,27 +43,12 @@ class StoreBorrowRecordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'book_id' => 'required|integer|exists:books,id',
-            'borrowed_at' => 'required|date|before_or_equal:today', // Ensure it's today or before
-            'due_date' => 'required|date|after:borrowed_at',        // Ensure it's after the borrowed_at date
+            'book_id' => 'required|exists:books,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'nullable|string',
         ];
     }
-    /**
-     * repare the data for validation
-     * give the borrowed_at and the due_date correct dates
-     */
-    protected function prepareForValidation()
-    {
-        $borrowedAt = $this->borrowed_at ? Carbon::parse($this->borrowed_at) : Carbon::now(); // or use $request->borrowed_at if provided
-        $dueDate = $borrowedAt->copy()->addDays(14);
-        $this->merge([
-            'book_id' => $this->book_id,
-            'user_id' => Auth::id(),
-            'borrowed_at' => $borrowedAt->toDateString(),
-            'due_date' => $dueDate->toDateString(),
-            'returned_at' => null,
-        ]);
-    }
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

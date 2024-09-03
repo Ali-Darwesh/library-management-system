@@ -25,7 +25,7 @@ class UpdateBookRequest extends FormRequest
     {
         return [
             'title' => 'sometimes|string|max:255|unique:books,title',
-            'author' => 'sometimes|string|max:255',
+            'author' => 'sometimes|string|max:255|min:3',
             'description' => 'sometimes|string|max:255',
             'published_at' => 'sometimes|date|before_or_equal:today',
             'category' => 'sometimes|string|max:255',
@@ -38,5 +38,22 @@ class UpdateBookRequest extends FormRequest
             'message' => 'please input data with correct form',
             'errors' => $validator->errors(),
         ]));
+    }
+
+    public function attributes()
+    {
+        return [
+            'title' => 'book title',
+            'author' => 'author name',
+            'description' => ' book description',
+            "published_at" => 'book publication date'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'sometimes' => 'the :attribute field must be writen',
+            'date' => 'the :attribute filed must writen in(( Year-Month-Day )) form'
+        ];
     }
 }

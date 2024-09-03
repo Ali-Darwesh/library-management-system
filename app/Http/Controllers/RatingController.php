@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRatingRequest;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,34 +14,36 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $ratings = Auth::user()->ratings;
+        if (!Auth::check()) {
+            abort(response()->json([
+                'error' => 'You are not authorized to perform this action.',
+            ], 403));
+        }
+        $ratings = Rating::all();
         return response()->json($ratings);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store the specified resource in storage.
+     * @param StoreRatingRequest $request
+     * @return \Illuminate\HTTP\JsonResponse
+
      */
-    public function store(Request $request)
+    public function store(StoreRatingRequest $request)
     {
 
-        $validatedData = $request->validate([
-            'book_id' => 'required|exists:books,id',
-            'rating' => 'required|integer|min:1|max:5',
-            'review' => 'nullable|string',
-        ]);
+        $validatedData = $request->all();
 
-        $rating = Rating::create([
-            'user_id' => Auth::id(),
-            'book_id' => $request['book_id'],
-            'rating' => $request['rating'],
-            'review' => $request['review'],
-        ]);
+        $rating = Rating::create($validatedData);
 
         return response()->json($rating, 201);
     }
 
     /**
-     * Display the specified resource.
+     * display a specified data.
+     * @param Rating $rating
+     * @return \Illuminate\HTTP\JsonResponse
+
      */
     public function show(Rating $rating)
     {
@@ -49,11 +52,14 @@ class RatingController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * store the specified resource in storage.
+     * @param Request $request
+     * @param Rating $rating
+     * @return \Illuminate\HTTP\JsonResponse
+
      */
     public function update(Request $request, Rating $rating)
     {
-        echo Auth::id();
         $rating = Rating::where('id', $rating->id)->where('user_id', Auth::id())->firstOrFail();
 
         $validatedData = $request->validate([
@@ -68,12 +74,21 @@ class RatingController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param Rating $rating
+     * @return \Illuminate\HTTP\JsonResponse
      */
     public function destroy(Rating $rating)
     {
-        $rating = Rating::where('id', $rating->id)->where('user_id', Auth::id())->firstOrFail();
+        $authenticatedUser  = Auth::user();
+        // Ensure that there is an authenticated user
+        if (!$authenticatedUser  || (!$authenticatedUser->is_admin && $rating->user_id !== $authenticatedUser->id)) {
+            abort(response()->json([
+                'error' => 'You are not authorized to perform this action.',
+            ], 403));
+        }
+
         $rating->delete();
 
-        return response()->json(['message' => 'Rating deleted successfully']);
+        return response()->json(['message' => 'Rating deleted successfully'], 200);
     }
 }

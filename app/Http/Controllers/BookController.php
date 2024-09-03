@@ -7,10 +7,15 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 use App\Services\BookService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
+    /**
+     * Constracor to inject Book Service
+     * @param BookService $bookService
+     */
     protected $bookService;
     public function __construct(BookService $bookService)
     {
@@ -18,16 +23,20 @@ class BookController extends Controller
     }
     /**
      * Display a listing of the resource.
+     * @param Request $request
+     * @return \Illuminate\HTTP\JsonResponse
      */
     public function index(Request $request)
     {
-        // $books = Book::all();
-        $books = Book::withAvg('ratings', 'rating')
-            ->get();
-        // ->makeHidden('ratings_avg_rating')
-        // ->each(function ($book) {
-        //     $book->ratings_avg = (int) round($book->ratings_avg_rating);
-        // });
+        $filters = $request->only(['author', 'is_available', 'category']);
+        $sortBy = $request->query('sort_by');
+        $sortOrder = $request->query('sort_order', 'asc');
+        $books = Book::filter($filters)
+            ->withAvg('ratings', 'rating')
+            ->sort($sortBy, $sortOrder)
+            ->get()
+            ->groupBy('category');
+
         return response()->json($books, 200);
     }
 
@@ -45,19 +54,27 @@ class BookController extends Controller
 
     /**
      * Display the specified resource.
+     * Store a newly created Book in database
+     * @param Request $request
+     * @return \Illuminate\HTTP\JsonResponse
      */
     public function show(Book $book)
     {
-        $wordCount = $book->descriptionWordCount();
+        $book = book::with('ratings')->find($book->id);
+
+        $rating = $book->ratings()->avg('rating');
+
         return response()->json([
-            'book' => $book,
-            'word_count' => $wordCount,
+            'data' => [
+                'book' => $book,
+                'average_rating' => $rating,
+            ]
         ], 200);
     }
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
+     * @param UpdateBookRequest $request
      * @param Book $book
      * @return \Illuminate\HTTP\JsonResponse
 
@@ -65,17 +82,26 @@ class BookController extends Controller
     public function update(UpdateBookRequest $request, Book $book)
     {
         $validatedData = $request->all();
-        $book = $this->bookService->updateBook($book, $validatedData);
+        $this->bookService->updateBook($book, $validatedData);
         return response()->json($book, 201);
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param Book $book
+     * @return \Illuminate\HTTP\JsonResponse
      */
     public function destroy(Book $book)
-    {  //dependencies injection
+    {
+        $user = Auth::user();
+        // Ensure that there is an authenticated user
+        if (!$user || !$user->is_admin) {
+            abort(response()->json([
+                'error' => 'You are not authorized to perform this action.',
+            ], 403));
+        }
         $book->delete();
         $book = $this->bookService->deleteBook($book);
-        return response()->json(['message' => 'deleting book success'], 204);
+        return response()->json(['message' => 'deleting book success'], 200);
     }
 }

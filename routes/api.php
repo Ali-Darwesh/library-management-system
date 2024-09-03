@@ -16,9 +16,12 @@ Route::group([
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api')->name('logout');
     Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:api')->name('refresh');
-    Route::post('/me', [AuthController::class, 'me'])->middleware('auth:api')->name('me');
 });
-Route::apiResource('users', UserController::class);
+Route::get('users', [UserController::class, 'index']);
+Route::get('users/{user}', [UserController::class, 'show']);
+Route::post('update-user/{user}', [UserController::class, 'update'])->middleware('auth:api');
+Route::delete('delete-user/{id}', [UserController::class, 'destroy']);
+
 Route::apiResource('books', BookController::class);
 Route::apiResource('ratings', RatingController::class);
 Route::apiResource('borrow-record', BorrowRecordController::class);

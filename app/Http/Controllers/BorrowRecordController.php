@@ -19,12 +19,16 @@ class BorrowRecordController extends Controller
      */
     public function index()
     {
-        $borrow_records = Auth::user()->borrow_records;
+        // $borrow_records = Auth::user()->borrow_records;
+        $borrow_records = Borrow_record::all();
         return response()->json($borrow_records);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store the specified resource in storage.
+     * @param StoreBorrowRecordRequest $request 
+     * @return \Illuminate\HTTP\JsonResponse
+
      */
     public function store(StoreBorrowRecordRequest $request)
     {
@@ -37,6 +41,7 @@ class BorrowRecordController extends Controller
                 'message' => 'This book is currently unavailable.',
             ], 400);
         }
+
         $validatedData = $request->all();
         $borrowRecord = Borrow_record::create($validatedData);
         $book->update(['is_available' => false]);
@@ -44,35 +49,55 @@ class BorrowRecordController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * display a specified data.
+     * @param Borrow_record $borrow_record
+     * @return \Illuminate\HTTP\JsonResponse
+
      */
     public function show(Borrow_record $borrow_record)
     {
-        //
+        return response()->json([
+            '$borrow_record' => $$borrow_record,
+        ], 200);
     }
 
     /**
      * Update the specified resource in storage.
+     * @param UpdateBorrowRecordRequest $request 
+     * @param Borrow_record $borrow_record
+     * @return \Illuminate\HTTP\JsonResponse
+
      */
     public function update(UpdateBorrowRecordRequest $request, Borrow_record $borrow_record)
     {
         $validatedData = $request;
         $check = Borrow_record::checkIfReturned($validatedData, $borrow_record);
         $book = Book::findOrFail($borrow_record->book_id);
-        if ($check['due_date'] == null) {
-            $borrow_record->update(['returned_at' => $check['returned_at']]);
+        if ($validatedData->returned_at !== null) {
             $book->update(['is_available' => true]);
-        } else {
-            $borrow_record->update(['due_date' => $check['due_date']]);
         }
-        return response()->json(['message' => $check['message'], 'borrow_record' => $borrow_record], 201);
+        return response()->json(['message' => $validatedData->message, 'borrow_record' => $borrow_record], 201);
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param Borrow_record $borrow_record
+     * @return \Illuminate\HTTP\JsonResponse
      */
     public function destroy(Borrow_record $borrow_record)
     {
+        $user = Auth::user();
+        // Ensure that there is an authenticated user
+        if (!$user || (!$user->is_admin && $borrow_record->user_id !== $user->id)) {
+            abort(response()->json([
+                'error' => 'You are not authorized to perform this action.',
+            ], 403));
+        }
         $borrow_record->delete();
+        $book = Book::findOrFail($borrow_record->book_id);
+
+        $book->update(['is_available' => true]);
+
+        return response()->json(['message' => 'borrow_record deleted successfully'], 200);
     }
 }

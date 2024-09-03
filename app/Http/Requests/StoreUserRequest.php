@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255|email|unique:users,email',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|string|min:8',
         ];
     }
     protected function failedValidation(Validator $validator)
