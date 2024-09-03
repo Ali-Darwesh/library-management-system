@@ -56,6 +56,12 @@ class StoreBorrowRecordRequest extends FormRequest
             'returned_at' => null,
         ]);
     }
+    /**
+     * The failedValidation method is used to customize the response that is returned when form validation fails 
+     * @param Validator $validator
+     * it throws an HttpResponseException
+     * @return \Illuminate\HTTP\JsonResponse
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

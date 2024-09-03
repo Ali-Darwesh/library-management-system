@@ -11,6 +11,7 @@ class StoreRatingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     * the user is authorized to make the rating operation
      */
     public function authorize(): bool
     {
@@ -24,7 +25,9 @@ class StoreRatingRequest extends FormRequest
 
         return true;
     }
-
+    /**
+     * prepare the date before validation
+     */
     protected function prepareForValidation()
     {
         $this->merge([
@@ -48,7 +51,12 @@ class StoreRatingRequest extends FormRequest
             'review' => 'nullable|string',
         ];
     }
-
+    /**
+     * The failedValidation method is used to customize the response that is returned when form validation fails 
+     * @param Validator $validator
+     * it throws an HttpResponseException
+     * @return \Illuminate\HTTP\JsonResponse
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

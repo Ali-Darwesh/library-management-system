@@ -51,6 +51,12 @@ class UpdateBorrowRecordRequest extends FormRequest
             'returned_at' => 'nullable|date|after_or_equal:borrowed_at',
         ];
     }
+    /**
+     * The failedValidation method is used to customize the response that is returned when form validation fails 
+     * @param Validator $validator
+     * it throws an HttpResponseException
+     * @return \Illuminate\HTTP\JsonResponse
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
@@ -59,6 +65,7 @@ class UpdateBorrowRecordRequest extends FormRequest
             'errors' => $validator->errors(),
         ]));
     }
+    //update the borrow_record appending on the new data
     protected function passedValidation()
     {
         //route model binding for borrow_record
@@ -81,6 +88,7 @@ class UpdateBorrowRecordRequest extends FormRequest
             $borrow_record->update([
                 'returned_at' => $this->returned_at,
             ]);
+            //Check if the book borrowing has exceeded the specified period
         } elseif ($daysDifference > 14) {
 
             $due_date = $dueDate->copy()->addDays(3);

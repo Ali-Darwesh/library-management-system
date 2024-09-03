@@ -38,6 +38,12 @@ class UpdateUserRequest extends FormRequest
             'password' => 'sometimes|min:8',
         ];
     }
+    /**
+     * The failedValidation method is used to customize the response that is returned when form validation fails 
+     * @param Validator $validator
+     * it throws an HttpResponseException
+     * @return \Illuminate\HTTP\JsonResponse
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
